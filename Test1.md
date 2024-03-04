@@ -8,13 +8,10 @@ Additional paragraphs can be added by performing a double enter. One enter simpl
 You can add a \<br> by adding two spaces after a line and pressing enter.   
 Ex: test
 
-Filler line
 
 ## Headings
 Use the hash(#) symbol to create headings. Each hash corresponds to a header  
 Ex: \#\# = \<h2>
-
-Filler line
 
 ## Text Effects
 There are various text effects available in Markdown. Examples and the code required are shown below.  
@@ -34,10 +31,22 @@ There are various text effects available in Markdown. Examples and the code requ
 ## Code Blocks
 ```js
     const a = 10
+    // comment
     let y = 8
-```
+``` 
 
 To have a code block, surround the block of code with \``` Code \```. Keep the ticks on different lines surrounding the code block. 
 
 You can add the language after the first ticks to get language apprpriate highlighting.  
 Ex: \```js for Javascript or \```py for python
+
+
+## Creating Links
+[This is a link](/Test1.md): To make a link, add text inside of a square bracket and the destination for the link inside of parentheses.  
+Ex: \[This is a link]\(/Test1.md) This just created a link to the Test1.md file in my local directory.
+
+## Adding Images
+Adding images follows a similar protocol, except you add an exclamation point before.  
+Ex: \!\[ Alt Text ]\( Image link ) 
+
+![alt text](Example1.jpg)
