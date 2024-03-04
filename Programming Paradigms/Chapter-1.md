@@ -15,6 +15,9 @@
   - [1.4 Influences on Language Design](#14-influences-on-language-design)
     - [Computer Architecture](#computer-architecture)
     - [Programming Design Methodologies](#programming-design-methodologies)
+  - [1.5 Language Categories](#15-language-categories)
+  - [1.6 Language Design Trade-offs](#16-language-design-trade-offs)
+  - [1.7 Implementation Methods](#17-implementation-methods)
 
 # Chapter 1: Preliminaries
 
@@ -126,3 +129,22 @@ The evolution continued into the early 1980s with the emergence of object-orient
 Despite the dominance of data-oriented methods, procedure-oriented programming has not been abandoned. Recent research has focused on concurrency, leading to the development of language features to support concurrent programming units, as seen in languages like Java and C#.
 
 Overall, these evolutionary steps in software development methodologies have led to the introduction of new language constructs to support them, reflecting the continuous evolution of programming languages.
+
+## 1.5 Language Categories
+
+Programming languages are often grouped into four categories: imperative, functional, logic, and object-oriented. However, object-oriented languages are usually considered extensions of imperative ones, sharing similar syntax. Scripting languages, like Perl and JavaScript, are often categorized separately, but they're essentially imperative. Logic languages, such as Prolog, use rules for computation and differ notably from other types. 
+
+## 1.6 Language Design Trade-offs
+
+The criteria used to evaluate programming languages often conflict with each other, making language design a challenging task. For instance, the Java language prioritizes reliability by enforcing array index range checking, which slows down program execution compared to languages like C. APL, known for its expressive array operators, sacrifices readability for writability due to its compact syntax. Similarly, the conflict between writability and reliability is evident in the flexibility of C++ pointers versus their exclusion in Java to avoid potential reliability issues. These trade-offs illustrate the complex decision-making process involved in programming language design.
+
+## 1.7 Implementation Methods
+
+1. **Compilation:**
+   - Compilation involves translating the entire source code of a program into machine code or bytecode before execution. This process typically involves several stages, including lexical analysis, parsing, optimization, and code generation. The resulting compiled code is then executed directly by the computer's hardware.
+
+2. **Pure Interpretation:**
+   - In pure interpretation, the source code of a program is executed line-by-line or statement-by-statement by an interpreter. The interpreter reads each instruction, translates it into machine code or intermediate code, and executes it immediately. This approach does not produce an intermediate compiled form, resulting in slower execution compared to compilation.
+
+3. **Hybrid:**
+   -  Hybrid implementation methods combine elements of both compilation and interpretation. Typically, the source code is initially compiled into an intermediate representation or bytecode. This bytecode is then executed by a virtual machine or interpreter. This approach offers a balance between the performance benefits of compilation and the flexibility of interpretation.
