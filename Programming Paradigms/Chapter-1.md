@@ -13,6 +13,8 @@
     - [**In the textbook *know these!!!***:](#in-the-textbook-know-these)
   - [1.3 Language Evaluation Criteria](#13-language-evaluation-criteria)
     - [Criteria Definitions](#criteria-definitions)
+    - [Evaluation Criteria: Cost](#evaluation-criteria-cost)
+    - [Evaluation Criteria: Other](#evaluation-criteria-other)
   - [1.4 Influences on Language Design](#14-influences-on-language-design)
     - [Computer Architecture](#computer-architecture)
     - [Programming Design Methodologies](#programming-design-methodologies)
@@ -113,12 +115,31 @@ Understanding implementation significance involves grasping how programming lang
 
 9. **Restricted aliasing**: Aliasing occurs when two or more references or pointers in a program refer to the same memory location. Restricted aliasing refers to language features or restrictions that limit the potential for aliasing, reducing the risk of unintended side effects and improving program reliability and maintainability.
 
+### Evaluation Criteria: Cost
+- Training programmers to use the language
+- Writing programs (closeness to particular applications)
+- Compiling programs
+- Executing programs
+- Language implementation system: availability of free compilers
+- Reliability: poor reliability leads to high costs
+- Maintaining programs
+
+### Evaluation Criteria: Other
+
+- Portability
+  - The ease with which programs can be moved from one implementation to
+another
+- Generality
+  - The applicability to a wide range of applications
+- Well-definedness
+  - The completeness and precision of the language’s official definition
+
 ## 1.4 Influences on Language Design
 
 ### Computer Architecture
-The design of programming languages is heavily influenced by factors such as computer architecture and programming methodologies. The von Neumann architecture, which has been prevalent in computers since the 1940s, plays a significant role in shaping imperative languages. These languages emphasize variables, assignment statements, and iterative forms of repetition, reflecting the pipelining operation between memory and the CPU in von Neumann computers.
+The design of programming languages is heavily influenced by factors such as computer architecture and programming methodologies. <mark>The von Neumann architecture, which has been prevalent in computers since the 1940s, plays a significant role in shaping imperative languages.</mark> These languages emphasize variables, assignment statements, and iterative forms of repetition, reflecting the pipelining operation between memory and the CPU in von Neumann computers.
 
-The fetch-execute cycle is a fundamental process in von Neumann architecture, where instructions are fetched from memory and executed in the CPU. Imperative languages are well-suited for this architecture due to their efficient handling of variables and iterative operations.
+The fetch-execute cycle is a fundamental process in von Neumann architecture, where instructions are fetched from memory and executed in the CPU. Imperative languages are well-suited for this architecture due to their efficient handling of variables and iterative operations. <mark>Imperative languages are the most dominant due to von neumann computers.</mark> Data and programs stored in memory. Memory is separate from the CPU, instructions and data are piped from memory to the CPU.
 
 Functional languages, on the other hand, prioritize the application of functions to parameters and often lack variables, assignment statements, and iteration. While functional languages like Scheme offer benefits, they may not displace imperative languages until non-von Neumann computers are developed to efficiently execute functional programs.
 
@@ -132,9 +153,9 @@ During the late 1960s and early 1970s, the structured-programming movement spurr
 
 New methodologies emerged, such as top-down design and stepwise refinement, aimed at improving programmer productivity and tackling complex problems more effectively. In this era, concerns were raised about deficiencies in programming languages, particularly regarding type checking and control statements.
 
-By the late 1970s, there was a shift towards data-oriented program design methodologies, which emphasized data design and abstract data types. Data abstraction became a key aspect of software system design, supported by languages like SIMULA 67, albeit in a limited capacity initially. However, the benefits of data abstraction became more widely recognized in the early 1970s, leading to its adoption in most languages designed thereafter.
+<mark>By the late 1970s, there was a shift towards data-oriented program design methodologies instead of process oriented</mark>, which emphasized data design and abstract data types. Data abstraction became a key aspect of software system design, supported by languages like SIMULA 67, albeit in a limited capacity initially. However, the benefits of data abstraction became more widely recognized in the early 1970s, leading to its adoption in most languages designed thereafter.
 
-The evolution continued into the early 1980s with the emergence of object-oriented design, which builds upon data abstraction by incorporating concepts like inheritance and dynamic method binding. Object-oriented programming languages like Smalltalk introduced these concepts, which have since become integral parts of popular imperative languages such as Java, C++, and C#. Object-oriented concepts have also influenced other paradigms, including functional and logic programming.
+The evolution continued into the <mark>early 1980s with the emergence of object-oriented design, which builds upon data abstraction by incorporating concepts like inheritance and dynamic method binding</mark>. Object-oriented programming languages like Smalltalk introduced these concepts, which have since become integral parts of popular imperative languages such as Java, C++, and C#. Object-oriented concepts have also influenced other paradigms, including functional and logic programming.
 
 Despite the dominance of data-oriented methods, procedure-oriented programming has not been abandoned. Recent research has focused on concurrency, leading to the development of language features to support concurrent programming units, as seen in languages like Java and C#.
 
@@ -143,6 +164,45 @@ Overall, these evolutionary steps in software development methodologies have led
 ## 1.5 Language Categories
 
 Programming languages are often grouped into four categories: imperative, functional, logic, and object-oriented. However, object-oriented languages are usually considered extensions of imperative ones, sharing similar syntax. Scripting languages, like Perl and JavaScript, are often categorized separately, but they're essentially imperative. Logic languages, such as Prolog, use rules for computation and differ notably from other types. 
+
+**Imperative**: 
+- Central features are variables,assignment statements, and iteration
+- Include languages that support object-oriented programming
+(OOP)
+- Includes scripting languages
+- Includes the visual languages
+- Language examples: C, C++, C#, Objective-C, Java, Perl, Python, Ruby, JavaScript, Visual BASIC .NET
+
+**Functional**:
+- Main means of making computations is by applying functions to given parameters
+- Functions are “first class citizens”
+- “Variables”, functions, and names
+- Lambda calculus
+- Language examples: LISP, Haskell, Racket (PLT Scheme),
+Clojure, Scala, ML, F#
+
+**Logic**:
+- Rule-based (rules are usually specified in no particular order)
+- Formal logic system
+  - First order logic
+  - Second order logic
+  - Description Logic
+- Language examples: Prolog, Answer Set Programming (ASP), Datalog
+
+**Quantum**:
+- Uses a single memory, not separate RAM (volatile) and
+Disk (non-volatile)
+- Memory in qubits that have both 1 and 0 values simultaneously
+- Instruction set is very different from von Neumann architecture
+  - Quil, OpenQASM
+- Language examples:
+  - Imperative-like: QCL, Q#, Q Language, qGCL
+  - Functional-like: QFC, QPL, QML
+
+**Markup/Programming Hybrid**
+- Markup languages extended to support some other programming
+- Examples: JSTL, XML, XSLT, JSON, SQL
+- Many are more accurately labeled as Protocols, not full (i.e. Turing Complete) Languages
 
 ## 1.6 Language Design Trade-offs
 
