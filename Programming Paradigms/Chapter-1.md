@@ -2,6 +2,7 @@
 - [Chapter 1: Preliminaries](#chapter-1-preliminaries)
   - [Reasons for Studying Concepts of Programming Languages](#11-reasons-for-studying-concepts-of-programming-languages)
   - [Programming Domains](#12-programming-domains)
+  - [Language Evaluation Criterion](#13-language-evaluation-criteria)
 
 # Chapter 1: Preliminaries
 
@@ -42,7 +43,7 @@ Understanding programming language concepts provides a global perspective on com
 
 7. **Financial Technology (FinTech):** Developing software solutions for financial services, such as banking, trading platforms, payment processing, and financial analytics.
 
-### **In the textbook**: 
+### **In the textbook *know these!!!***: 
 1. **Scientific Applications:** Utilizing programming to solve scientific problems, such as mathematical modeling, simulations, and data analysis in fields like physics, biology, and chemistry.
 
 2. **Business Applications:** Developing software to support business processes and operations, including enterprise resource planning (ERP), customer relationship management (CRM), and inventory management systems.
@@ -53,3 +54,36 @@ Understanding programming language concepts provides a global perspective on com
 
 5. **Web Software:** Building applications and services for the web, including websites, web applications, e-commerce platforms, and content management systems (CMS).
 
+## 1.3 Language Evaluation Criteria
+
+| Criteria               | Readability | Writability | Reliability |
+|------------------------|-------------|-------------|-------------|
+| Simplicity             |      ✔      |      ✔      |      ✔      |
+| Orthogonality          |      ✔      |      ✔      |      ✔      |
+| Data types             |      ✔      |      ✔      |      ✔      |
+| Syntax design          |      ✔      |      ✔      |      ✔      |
+| Support for abstraction|             |      ✔      |      ✔     |
+| Expressivity           |             |      ✔      |      ✔      |
+| Type checking          |             |             |      ✔      |
+| Exception handling     |             |             |      ✔      |
+| Restricted aliasing    |             |             |      ✔      |
+
+### Criteria Definitions
+
+1. **Simplicity**: This criterion evaluates how easy it is to understand and use the language. Languages that are simple tend to have clear and straightforward syntax, making them easier for programmers to learn and use effectively.
+
+2. **Orthogonality**: Orthogonality refers to the degree to which language features can be combined and used independently of each other. A highly orthogonal language allows for a wide range of expressions and combinations without unnecessary restrictions or complications.
+
+3. **Data types**: This criterion assesses the types of data structures and data types supported by the language. A language with robust data type support provides programmers with flexibility and control over how data is organized and manipulated within their programs.
+
+4. **Syntax design**: Syntax design concerns the structure and rules governing the formation of statements and expressions in the language. Well-designed syntax enhances readability and writability by promoting clarity, consistency, and conciseness in code.
+
+5. **Support for abstraction**: Abstraction allows programmers to hide implementation details and focus on higher-level concepts. Languages that support abstraction provide mechanisms such as classes, modules, and functions to encapsulate complex functionality and promote code reusability and maintainability.
+
+6. **Expressivity**: Expressivity refers to the language's ability to concisely and effectively express computational ideas and concepts. A highly expressive language allows programmers to write concise and clear code that accurately represents their intentions.
+
+7. **Type checking**: Type checking is the process of verifying the correctness of data types used in a program. Languages with strong type checking perform rigorous checks at compile time or runtime to ensure type safety, reducing the likelihood of errors related to data type mismatches.
+
+8. **Exception handling**: Exception handling mechanisms enable programmers to gracefully handle runtime errors and exceptional conditions that may occur during program execution. Effective exception handling promotes robustness and reliability by allowing programs to recover gracefully from unexpected situations.
+
+9. **Restricted aliasing**: Aliasing occurs when two or more references or pointers in a program refer to the same memory location. Restricted aliasing refers to language features or restrictions that limit the potential for aliasing, reducing the risk of unintended side effects and improving program reliability and maintainability.
