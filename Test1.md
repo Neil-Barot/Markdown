@@ -50,3 +50,58 @@ Adding images follows a similar protocol, except you add an exclamation point be
 Ex: \!\[ Alt Text ]\( Image link ) 
 
 ![alt text](Example1.jpg)
+
+## Block Quotes
+> Example of block code  
+> New Line
+> >Nested block code
+
+To add block quotes add > in front of the text
+
+## Horizontal Rule
+Horizontal lines can be created in various ways.  
+For example: \--- or \*** or \___ makes:
+
+---
+
+This can be useful for organization purposes. Make sure to have an empty line padding it.
+
+## Lists
+1. Item 1
+2. Item 2
+3. Item 3
+
+- Example 1
+  - test
+  - test
+- Example 2
+- Example 3
+
+Creating lists is easy, simply add a dash befor or a number and a dot. Very similar to using google docs or word.
+
+## Table
+|col 1|col 2|
+|---- |:----:|  
+|test 1| test 2|
+
+Tables can be made using pipes and dividers. | this is a pipe and \-\-\- is a divider. The table above looks like:
+
+.|col 1|col 2|  
+|---- |:----:|   
+|test 1| test 2|
+
+You can align the table using colons.  
+Ex: :--: is a center align, :-- is a left align, and --: is a right align.
+
+## Checklist
+
+- [ ] Check 1
+- [x] Check 2
+- [ ] Check 3
+
+To make a checklist use the follwoing syntax:  
+- Unchecked: \- \[ ] Text
+- Checked: \- \[x] Text
+    
+The square brackets have a space in between them for unchecked and an 'x' or 'X' for a checked checkbox.
+
