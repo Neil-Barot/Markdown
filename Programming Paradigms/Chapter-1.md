@@ -1,8 +1,20 @@
 # Table of Contents
+- [Table of Contents](#table-of-contents)
 - [Chapter 1: Preliminaries](#chapter-1-preliminaries)
-  - [Reasons for Studying Concepts of Programming Languages](#11-reasons-for-studying-concepts-of-programming-languages)
-  - [Programming Domains](#12-programming-domains)
-  - [Language Evaluation Criterion](#13-language-evaluation-criteria)
+  - [1.1: Reasons for Studying Concepts of Programming Languages](#11-reasons-for-studying-concepts-of-programming-languages)
+    - [Increased Capacity to express ideas:](#increased-capacity-to-express-ideas)
+    - [Improved Background for choosing appropriate languages](#improved-background-for-choosing-appropriate-languages)
+    - [Increased Ability to learn a new language](#increased-ability-to-learn-a-new-language)
+    - [Better use of languages that are already known](#better-use-of-languages-that-are-already-known)
+    - [Overall advancement of computing](#overall-advancement-of-computing)
+  - [1.2 Programming Domains](#12-programming-domains)
+    - [**Might have talked about these in class:**](#might-have-talked-about-these-in-class)
+    - [**In the textbook *know these!!!***:](#in-the-textbook-know-these)
+  - [1.3 Language Evaluation Criteria](#13-language-evaluation-criteria)
+    - [Criteria Definitions](#criteria-definitions)
+  - [1.4 Influences on Language Design](#14-influences-on-language-design)
+    - [Computer Architecture](#computer-architecture)
+    - [Programming Design Methodologies](#programming-design-methodologies)
 
 # Chapter 1: Preliminaries
 
@@ -87,3 +99,30 @@ Understanding programming language concepts provides a global perspective on com
 8. **Exception handling**: Exception handling mechanisms enable programmers to gracefully handle runtime errors and exceptional conditions that may occur during program execution. Effective exception handling promotes robustness and reliability by allowing programs to recover gracefully from unexpected situations.
 
 9. **Restricted aliasing**: Aliasing occurs when two or more references or pointers in a program refer to the same memory location. Restricted aliasing refers to language features or restrictions that limit the potential for aliasing, reducing the risk of unintended side effects and improving program reliability and maintainability.
+
+## 1.4 Influences on Language Design
+
+### Computer Architecture
+The design of programming languages is heavily influenced by factors such as computer architecture and programming methodologies. The von Neumann architecture, which has been prevalent in computers since the 1940s, plays a significant role in shaping imperative languages. These languages emphasize variables, assignment statements, and iterative forms of repetition, reflecting the pipelining operation between memory and the CPU in von Neumann computers.
+
+The fetch-execute cycle is a fundamental process in von Neumann architecture, where instructions are fetched from memory and executed in the CPU. Imperative languages are well-suited for this architecture due to their efficient handling of variables and iterative operations.
+
+Functional languages, on the other hand, prioritize the application of functions to parameters and often lack variables, assignment statements, and iteration. While functional languages like Scheme offer benefits, they may not displace imperative languages until non-von Neumann computers are developed to efficiently execute functional programs.
+
+Despite the structural alignment of imperative languages with machine architecture, some argue for the naturalness of imperative languages over functional ones. They believe that even if functional programs were as efficient, imperative languages would still dominate due to perceived ease of use.
+
+Overall, the design of programming languages is intricately linked to the underlying computer architecture and the preferences of language users.
+
+### Programming Design Methodologies
+
+During the late 1960s and early 1970s, the structured-programming movement spurred an in-depth analysis of software development processes and programming language design. This shift was driven by the increasing prominence of software development costs as hardware costs decreased, and as computers tackled larger and more complex tasks.
+
+New methodologies emerged, such as top-down design and stepwise refinement, aimed at improving programmer productivity and tackling complex problems more effectively. In this era, concerns were raised about deficiencies in programming languages, particularly regarding type checking and control statements.
+
+By the late 1970s, there was a shift towards data-oriented program design methodologies, which emphasized data design and abstract data types. Data abstraction became a key aspect of software system design, supported by languages like SIMULA 67, albeit in a limited capacity initially. However, the benefits of data abstraction became more widely recognized in the early 1970s, leading to its adoption in most languages designed thereafter.
+
+The evolution continued into the early 1980s with the emergence of object-oriented design, which builds upon data abstraction by incorporating concepts like inheritance and dynamic method binding. Object-oriented programming languages like Smalltalk introduced these concepts, which have since become integral parts of popular imperative languages such as Java, C++, and C#. Object-oriented concepts have also influenced other paradigms, including functional and logic programming.
+
+Despite the dominance of data-oriented methods, procedure-oriented programming has not been abandoned. Recent research has focused on concurrency, leading to the development of language features to support concurrent programming units, as seen in languages like Java and C#.
+
+Overall, these evolutionary steps in software development methodologies have led to the introduction of new language constructs to support them, reflecting the continuous evolution of programming languages.

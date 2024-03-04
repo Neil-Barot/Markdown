@@ -103,5 +103,5 @@ To make a checklist use the follwoing syntax:
 - Unchecked: \- \[ ] Text
 - Checked: \- \[x] Text
     
-The square brackets have a space in between them for unchecked and an 'x' or 'X' for a checked checkbox.
+The square brackets have a space in between them for unchecked and an 'x' or 'X' for a checked
 
