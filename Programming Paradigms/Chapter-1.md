@@ -7,6 +7,7 @@
     - [Increased Ability to learn a new language](#increased-ability-to-learn-a-new-language)
     - [Better use of languages that are already known](#better-use-of-languages-that-are-already-known)
     - [Overall advancement of computing](#overall-advancement-of-computing)
+    - [Better understanding of significance of implementation](#better-understanding-of-significance-of-implementation)
   - [1.2 Programming Domains](#12-programming-domains)
     - [**Might have talked about these in class:**](#might-have-talked-about-these-in-class)
     - [**In the textbook *know these!!!***:](#in-the-textbook-know-these)
@@ -18,9 +19,12 @@
   - [1.5 Language Categories](#15-language-categories)
   - [1.6 Language Design Trade-offs](#16-language-design-trade-offs)
   - [1.7 Implementation Methods](#17-implementation-methods)
+  - [Other Useful Tidbits:](#other-useful-tidbits)
 - [Chapter 2: Evolution of the Major Programming Languages](#chapter-2-evolution-of-the-major-programming-languages)
-    - [Individuals:](#individuals)
-    - [Languages:](#languages)
+  - [Individuals:](#individuals)
+  - [Languages:](#languages)
+  - [Other Useful Tidbits 2:](#other-useful-tidbits-2)
+- [Chapter 3: Describing Syntax and Semantics](#chapter-3-describing-syntax-and-semantics)
 
 # Chapter 1: Preliminaries
 
@@ -44,6 +48,9 @@ programmer to be familiar with and use all of the features of a language he or s
 ### Overall advancement of computing
 Understanding programming language concepts provides a global perspective on computing. Popular languages aren't always the best; sometimes, lesser-known ones are superior. Lack of familiarity with language concepts can lead to the adoption of less optimal languages. For instance, ALGOL 60 was considered more elegant than Fortran but wasn't widely adopted due to a lack of understanding among programmers and managers. Better-informed language choices could lead to superior languages prevailing over inferior ones in the long run.
 
+### Better understanding of significance of implementation
+Understanding implementation significance involves grasping how programming languages translate into machine code and interact with hardware during execution. This knowledge enhances programmers' ability to optimize code for efficiency and resource usage, leading to better software performance and user experiences.
+
 ## 1.2 Programming Domains
 
 ### **Might have talked about these in class:**
@@ -62,15 +69,15 @@ Understanding programming language concepts provides a global perspective on com
 7. **Financial Technology (FinTech):** Developing software solutions for financial services, such as banking, trading platforms, payment processing, and financial analytics.
 
 ### **In the textbook *know these!!!***: 
-1. **Scientific Applications:** Utilizing programming to solve scientific problems, such as mathematical modeling, simulations, and data analysis in fields like physics, biology, and chemistry.
+1. **Scientific Applications:** Utilizing programming to solve scientific problems, such as mathematical modeling, simulations, and data analysis in fields like physics, biology, and chemistry. A language used: <mark>Fortran</mark>
 
-2. **Business Applications:** Developing software to support business processes and operations, including enterprise resource planning (ERP), customer relationship management (CRM), and inventory management systems.
+2. **Business Applications:** Developing software to support business processes and operations, including enterprise resource planning (ERP), customer relationship management (CRM), and inventory management systems. A language used: <mark>Cobol</mark>
 
-3. **Artificial Intelligence:** Creating intelligent systems and algorithms that can mimic human intelligence, including machine learning, natural language processing, computer vision, and robotics.
+3. **Artificial Intelligence:** Creating intelligent systems and algorithms that can mimic human intelligence, including machine learning, natural language processing, computer vision, and robotics. A language used: <mark>Lisp</mark>
 
-4. **Systems Programming:** Writing low-level software to manage hardware resources and interact with the operating system, often used in areas like operating systems development, device drivers, and embedded systems.
+4. **Systems Programming:** Writing low-level software to manage hardware resources and interact with the operating system, often used in areas like operating systems development, device drivers, and embedded systems. A language used: <mark>C</mark>
 
-5. **Web Software:** Building applications and services for the web, including websites, web applications, e-commerce platforms, and content management systems (CMS).
+5. **Web Software:** Building applications and services for the web, including websites, web applications, e-commerce platforms, and content management systems (CMS). Uses a colection of languages for various purposes. Ex: markup: <mark>HTML</mark>, scripting: <mark>PHP</mark>, and general purpose: <mark>Java</mark>
 
 ## 1.3 Language Evaluation Criteria
 
@@ -154,9 +161,15 @@ The criteria used to evaluate programming languages often conflict with each oth
 
 Preprocessors: A preprocessor is a program that handles code before compilation. Preprocessor instructions are embedded in programs and serve various purposes, such as including code from other files or defining symbols for expressions. For example, the C preprocessor instruction #include "myLib.h" copies the contents of myLib.h into the program at the specified position. Another common use is defining macros like #define max(A, B) ((A) > (B) ? (A) : (B)), which allows finding the maximum of two expressions. However, caution is needed with macros, as they can lead to issues like unintended side effects, especially when expressions with side effects are used as parameters. For instance, if one of the expressions passed to the max macro contains a side effect like z++, it could be evaluated multiple times, causing unexpected behavior.
 
+## Other Useful Tidbits:
+
+- In Computability Theory, a system of data-manipulation rules is said to be Turing Complete if it can be used to simulate any single-taped Turing machine.
+- Natural Languages have ambiguous grammar while Programming languages have unambiguous grammar
+- Constructed Languages or Conlangs are artificially created languages such as: programming languages, fictional languages (klingon), or gesture/sign languages. Includes more
+
 # Chapter 2: Evolution of the Major Programming Languages
 
-### Individuals:
+## Individuals:
 1. **Charles Babbage**: An English mathematician, philosopher, inventor, and mechanical engineer who originated the concept of a programmable computer.
 2. **Ada Lovelace**: An English mathematician and writer, chiefly known for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine.
 3. **John von Neumann**: A Hungarian-American mathematician, physicist, computer scientist, and polymath who made major contributions to a vast range of fields, including mathematics, physics, economics, and computer science.
@@ -164,8 +177,8 @@ Preprocessors: A preprocessor is a program that handles code before compilation.
 5. **Donald Knuth**: An American computer scientist, mathematician, and professor emeritus at Stanford University, best known for his multi-volume work, "The Art of Computer Programming."
 6. **Brian Kernighan and Dennis Ritchie**: Kernighan is a Canadian computer scientist who co-authored several seminal books on programming languages, while Ritchie, who passed away in 2011, was an American computer scientist who created the C programming language and contributed significantly to the development of Unix.
 
-### Languages:
-1. **Plankalkül**: An early programming language designed for engineering purposes by Konrad Zuse in the late 1940s and early 1950s.
+## Languages:
+1. **Plankalkül**: An early programming language designed for engineering purposes by Konrad Zuse in the late 1940s and early 1950s. Not published until 1972. Never implemented in its original form but had advanced data structures.
 2. **“Pseudocode”**: A high-level description of an algorithm or a program written in plain English, used as a tool for planning and sketching algorithms before coding.
 3. **IBM 704 & Fortran**: The IBM 704 was an early mainframe computer, and Fortran (short for "Formula Translation") was the first high-level programming language designed for numerical and scientific computing.
 4. **LISP**: A high-level programming language known for its unique approach to symbolic computation and its influence on the development of artificial intelligence.
@@ -173,7 +186,7 @@ Preprocessors: A preprocessor is a program that handles code before compilation.
 6. **Java**: A general-purpose programming language known for its "write once, run anywhere" approach, widely used for building enterprise-scale applications, web servers, and Android apps.
 7. **C/C++**: C is a procedural programming language developed by Dennis Ritchie, while C++ is an object-oriented extension of C designed by Bjarne Stroustrup. Both languages are widely used for systems programming, game development, and application software.
 8. **Perl**: A high-level, interpreted programming language known for its powerful text-processing features and practical extraction and reporting capabilities.
-9. **Python**: A versatile, high-level programming language known for its simplicity and readability, widely used in web development, data analysis, artificial intelligence, and scientific computing.
+9.  **Python**: A versatile, high-level programming language known for its simplicity and readability, widely used in web development, data analysis, artificial intelligence, and scientific computing.
 10. **Ruby**: A dynamic, reflective, object-oriented programming language known for its simplicity and productivity, often used for web development and scripting.
 11. **Ada**: A structured, statically typed, imperative, and object-oriented high-level programming language, developed by a team led by Jean Ichbiah of CII Honeywell Bull under contract to the United States Department of Defense.
 12. **COBOL**: Common Business-Oriented Language, primarily used in business, finance, and administrative systems for companies and governments.
@@ -183,3 +196,9 @@ Preprocessors: A preprocessor is a program that handles code before compilation.
 16. **Scheme, Racket**: Lisp dialects known for their simple syntax and powerful macro system, widely used in education and research.
 17. **Haskell**: A purely functional programming language known for its strong static typing and lazy evaluation, often used in academia and industry for research and production.
 
+## Other Useful Tidbits 2:
+- The first programming language was related the the computation of Bernoulli Numbers. In 1843 on the Analytical Engine pioneered by <mark>Charles Babbage</mark> and programmed by <mark>Ada Lovelace</mark>
+- Source code is stored in files. File structure is composed of pages and sectors
+- EsoLangs: languages that are created as a joke.
+
+# Chapter 3: Describing Syntax and Semantics
