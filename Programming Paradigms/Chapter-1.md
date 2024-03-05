@@ -38,6 +38,16 @@
     - [3.3.1.7 Ambiguity](#3317-ambiguity)
     - [3.3.1.8 Operator Precedence](#3318-operator-precedence)
     - [3.3.1.9 Associativity of Operators](#3319-associativity-of-operators)
+    - [3.3.1.10 An Unambiguous Grammar for if-else](#33110-an-unambiguous-grammar-for-if-else)
+    - [3.3.2 Extended BNF](#332-extended-bnf)
+  - [3.4 Attribute Grammars](#34-attribute-grammars)
+    - [3.4.1 Static Semantics](#341-static-semantics)
+    - [3.4.2 Basic Concepts](#342-basic-concepts)
+    - [3.4.3 Attribute Grammars Defined](#343-attribute-grammars-defined)
+    - [3.4.4 Intrinsic Attributes](#344-intrinsic-attributes)
+    - [3.4.5 Examples of Attribute Grammars](#345-examples-of-attribute-grammars)
+    - [3.4.6 Computing Attribute Values](#346-computing-attribute-values)
+    - [3.4.7 Evaluation](#347-evaluation)
 
 # Chapter 1: Preliminaries
 
@@ -447,3 +457,63 @@ When expressions contain operators with the same precedence (e.g., * and /), a s
 - **Left vs Right Recursion Examples:**
   For left recursive: Ex: \<LHS> = \<LHS> \<RHS>, while for right recursive: Ex: \<LHS> = \<RHS> \<LHS>
 
+### 3.3.1.10 An Unambiguous Grammar for if-else
+
+The BNF rules for a Java if-else statement initially lack clarity due to ambiguity, especially when <stmt> → <if_stmt> is included. This ambiguity becomes apparent when dealing with nested if-else constructs.
+
+- **Resolution Approach:** To address this ambiguity, an unambiguous grammar is developed. It distinguishes between matched and unmatched statements, considering that an else clause is matched with the nearest previous unmatched then clause.
+
+- **Unambiguous Grammar:** The grammar introduces two nonterminals, <matched> and <unmatched>, to categorize statements based on their syntactic significance. <matched> represents statements with a matching else clause, while <unmatched> represents else-less if statements.
+
+- **Example of Unambiguous Parsing:** The unambiguous grammar ensures clarity in parsing nested if-else constructs. There's only one possible parse tree for the sentential form if (<logic_expr>) if (<logic_expr>) <stmt> else <stmt>, providing unambiguous interpretation.
+
+### 3.3.2 Extended BNF
+
+EBNF, or Extended Backus-Naur Form, extends the traditional BNF notation to improve readability and writability. Three common extensions in EBNF include denoting optional parts using brackets, indicating repetition with braces, and specifying multiple-choice options using parentheses and the OR operator (|).
+
+- **Optional Parts**
+Optional parts of a production rule are denoted using brackets ([]). For example, in a C if-else statement, `<statement> [else <statement>]` indicates that the else part is optional.
+
+- **Repetition**
+Repetition is indicated by braces ({}), which denote that the enclosed part can be repeated indefinitely or left out altogether. For instance, `<identifier> {, <identifier>}` describes a list of identifiers separated by commas.
+
+- **Multiple-Choice Options**
+Parentheses and the OR operator (|) are used to specify multiple-choice options. For example, `<term> → <term> (* | / | %) <factor>` represents three options for the *, /, or % operators.
+
+These extensions enhance the descriptive power of BNF without changing its underlying capabilities. However, it's important to note that they are not terminal symbols but notational tools used in the syntactic description. If these symbols are also terminal symbols in the language being described, they can be underlined or quoted.
+
+Some variations on EBNF have emerged, such as using a colon instead of an arrow, placing alternative RHSs on separate lines, and using different notations for optional parts and multiple-choice options. Despite the existence of a standard for EBNF (ISO/IEC 14977:1996), it's rarely used in practice.
+
+## 3.4 Attribute Grammars
+
+### 3.4.1 Static Semantics
+
+Static semantics involves characteristics of programming languages that are challenging to specify with BNF or impossible to define entirely. For example, type compatibility rules, like those in Java, require additional nonterminals and rules in BNF. Static semantics concerns the legal forms of programs, such as type constraints, and can be analyzed at compile time.
+
+### 3.4.2 Basic Concepts
+
+- **Attributes**: Associated with grammar symbols, attributes consist of synthesized and inherited sets used to pass semantic information.
+- **Semantic Functions**: Associated with grammar rules, these functions compute attribute values.
+- **Predicate Functions**: Define static semantic rules and evaluate to true or false.
+
+### 3.4.3 Attribute Grammars Defined
+
+An attribute grammar comprises a grammar with:
+- Sets of synthesized and inherited attributes for each symbol.
+- Semantic functions and predicate functions associated with grammar rules.
+
+### 3.4.4 Intrinsic Attributes
+
+Synthesized attributes of leaf nodes with values determined outside the parse tree, like variable types retrieved from a symbol table.
+
+### 3.4.5 Examples of Attribute Grammars
+
+Attribute grammars are illustrated through examples. They provide a formal approach to describe and validate static semantics rules.
+
+### 3.4.6 Computing Attribute Values
+
+Attribute values are computed through a process of decorating the parse tree. Evaluation can't proceed in a single direction due to a mix of synthesized and inherited attributes.
+
+### 3.4.7 Evaluation
+
+Attribute grammars are essential for checking the static semantic rules of a language. Despite their power, large and complex attribute grammars pose challenges in writing, reading, and evaluating attribute values on large parse trees. However, they remain a commonly used tool in compiler design.
