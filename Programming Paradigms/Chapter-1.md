@@ -27,6 +27,17 @@
   - [Languages:](#languages)
   - [Other Useful Tidbits 2:](#other-useful-tidbits-2)
 - [Chapter 3: Describing Syntax and Semantics](#chapter-3-describing-syntax-and-semantics)
+  - [3.2 The General Problem of Describing Syntax](#32-the-general-problem-of-describing-syntax)
+  - [3.3 Formal Methods of Describing Syntax](#33-formal-methods-of-describing-syntax)
+    - [Backus-Naur Form (BNF) and Context-Free Grammars](#backus-naur-form-bnf-and-context-free-grammars)
+    - [3.3.1.3 Fundamentals](#3313-fundamentals)
+    - [3.3.1.4 Describing Lists](#3314-describing-lists)
+    - [3.3.1.5 Grammars and Derivations](#3315-grammars-and-derivations)
+    - [3.3.1.4 Describing Lists](#3314-describing-lists-1)
+    - [3.3.1.5 Grammars and Derivations](#3315-grammars-and-derivations-1)
+    - [3.3.1.7 Ambiguity](#3317-ambiguity)
+    - [3.3.1.8 Operator Precedence](#3318-operator-precedence)
+    - [3.3.1.9 Associativity of Operators](#3319-associativity-of-operators)
 
 # Chapter 1: Preliminaries
 
@@ -211,13 +222,15 @@ The criteria used to evaluate programming languages often conflict with each oth
 ## 1.7 Implementation Methods
 
 1. **Compilation:**
-   - Compilation involves translating the entire source code of a program into machine code or bytecode before execution. This process typically involves several stages, including lexical analysis, parsing, optimization, and code generation. The resulting compiled code is then executed directly by the computer's hardware.
+   - Compilation involves translating the entire source code of a program into machine code or bytecode before execution. This process typically involves several stages, including lexical analysis, parsing, optimization, and code generation. The resulting compiled code is then executed directly by the computer's hardware. Used in large commercial applications. Has a slow translation but a fast execution. Translation consists of lexical analysis, semantic analysis, and code generation
 
 2. **Pure Interpretation:**
-   - In pure interpretation, the source code of a program is executed line-by-line or statement-by-statement by an interpreter. The interpreter reads each instruction, translates it into machine code or intermediate code, and executes it immediately. This approach does not produce an intermediate compiled form, resulting in slower execution compared to compilation.
+   - In pure interpretation, the source code of a program is executed line-by-line or statement-by-statement by an interpreter. The interpreter reads each instruction, translates it into machine code or intermediate code, and executes it immediately. This approach does not produce an intermediate compiled form, resulting in slower execution compared to compilation. This is primarily used in small programs or when efficiency is not a concern. Easier implementation but much slower execution and requires more memory. Significant comeback for some web scripting languages: such as Javascript and PHP.
 
 3. **Hybrid:**
-   -  Hybrid implementation methods combine elements of both compilation and interpretation. Typically, the source code is initially compiled into an intermediate representation or bytecode. This bytecode is then executed by a virtual machine or interpreter. This approach offers a balance between the performance benefits of compilation and the flexibility of interpretation.
+   -  Hybrid implementation methods combine elements of both compilation and interpretation. Typically, the source code is initially compiled into an intermediate representation or bytecode. This bytecode is then executed by a virtual machine or interpreter. This approach offers a balance between the performance benefits of compilation and the flexibility of interpretation. Used in small/medium systems where efficiency is not the primary concern. Compromise. Perl programs are an example, the programs are partially compiled.
+  
+Just-In-Time: Essentially delayed compilers. .Net languages are implemented with a JIT system.
 
 Preprocessors: A preprocessor is a program that handles code before compilation. Preprocessor instructions are embedded in programs and serve various purposes, such as including code from other files or defining symbols for expressions. For example, the C preprocessor instruction #include "myLib.h" copies the contents of myLib.h into the program at the specified position. Another common use is defining macros like #define max(A, B) ((A) > (B) ? (A) : (B)), which allows finding the maximum of two expressions. However, caution is needed with macros, as they can lead to issues like unintended side effects, especially when expressions with side effects are used as parameters. For instance, if one of the expressions passed to the max macro contains a side effect like z++, it could be evaluated multiple times, causing unexpected behavior.
 
@@ -262,3 +275,175 @@ Preprocessors: A preprocessor is a program that handles code before compilation.
 - EsoLangs: languages that are created as a joke.
 
 # Chapter 3: Describing Syntax and Semantics
+
+## 3.2 The General Problem of Describing Syntax
+
+**Syntax Rules of Programming Languages**
+- *Definition*: A language consists of all valid statements, or strings, in that language, potentially infinite in number.
+- *Grammar*: A formal description of a language, characterized by a finite set of rules.
+- *Syntax*: A formal method used to determine if a statement belongs to a language's set of valid statements.
+- *Example*: Consider a language composed of non-zero even numbers of the letter "a". While this set has infinitely many members, its syntax can be concisely described using a finite set of Backus-Naur Form (BNF) rules, such as S ⟶ aa | aaS.
+- *Grammars*: Can be utilized in two distinct ways: for recognition and for generation.
+  
+**Language Recognizers**
+- *Recognition Method*: Defines languages by constructing a recognition device capable of determining if a given string of characters is in the language.
+- *Syntax Analysis*: Syntax analyzers (parsers) in compilers act as recognizers, determining if programs are syntactically correct.
+- *Purpose*: Recognition devices, like filters, separate legal sentences from those that are incorrectly formed. They indicate whether a given string is in the language or not.
+
+**Language Generators**
+- *Generation Method*: Involves a device that generates sentences of a language.
+- *Purpose*: Although less precise than recognizers, generators are easier for humans to understand and compare with program structures.
+- *Usefulness*: While syntax-checking portions of compilers are useful for programmers in trial-and-error mode, generators provide a clearer understanding of the language's structure.
+
+**Other notes and definitions**
+- The lexemes of a programming language include
+its numeric literals, operators, and special words, among others. One can think of programs as strings of lexemes rather than of characters
+- The strings of a language are called
+sentences or statements
+- A token of a language is a category of its lexemes, Ex: Lexeme: + may have Token: plus_op.
+
+## 3.3 Formal Methods of Describing Syntax
+
+### Backus-Naur Form (BNF) and Context-Free Grammars
+
+**Development of Formal Syntax Description**
+- **Chomsky and Backus**: In the 1950s, Noam Chomsky and John Backus independently developed a syntax description formalism, which became widely used for programming language syntax.
+  
+**Context-Free Grammars**
+- **Chomsky's Work**: Noam Chomsky, primarily a linguist, described four classes of generative devices or grammars, two of which, context-free and regular, were found useful for programming language syntax.
+- **Applicability**: Context-free grammars, though initially aimed at natural languages, were later applied to programming languages due to their effectiveness in describing syntax.
+
+**Origins of Backus-Naur Form (BNF)**
+- **ALGOL 58**: The ACM-GAMM group, during the design of ALGOL 58, introduced a new formal notation for specifying programming language syntax.
+- **John Backus and Peter Naur**: John Backus presented a landmark paper describing ALGOL 58 in 1959, which later influenced Peter Naur's modification for ALGOL 60, resulting in Backus-Naur Form (BNF).
+- **Historical Context**: BNF's concept dates back to the syntax description used by Panini to describe Sanskrit several hundred years before Christ.
+
+**Popularity of BNF**
+- **Acceptance**: Although initially not widely accepted, BNF soon became the most popular method for concisely describing programming language syntax.
+- **Equivalence with Context-Free Grammars**: BNF closely resembles Chomsky's context-free grammars, often used interchangeably in discussions of syntax description.
+
+In subsequent discussions, BNF and grammars are used synonymously to describe programming language syntax concisely and effectively.
+
+### 3.3.1.3 Fundamentals
+**A metalanguage** is a language that is used to describe another language. **BNF** is a metalanguage for programming languages. BNF uses abstractions for syntactic structures. A simple Java assignment statement, for example, might be represented by the abstraction `<assign>`. The actual definition of `<assign>` can be given by `<assign> → <var> = <expression>`. The text on the left side of the arrow, which is aptly called the left-hand side (LHS), is the abstraction being defined. The text to the right of the arrow is the definition of the LHS, called the right-hand side (RHS), and consists of some mixture of tokens, lexemes, and references to other abstractions.
+
+Nonterminal symbols in a BNF description, or grammar, are often called **nonterminals**, and the lexemes and tokens of the rules are called **terminals**. A BNF description, or grammar, is a collection of rules. Nonterminal symbols can have two or more distinct definitions, representing two or more possible syntactic forms in the language. Multiple definitions can be written as a single rule, with the different definitions separated by the symbol `|`, meaning logical OR. Though simple, BNF is powerful enough to describe almost all of the syntax of programming languages.
+
+### 3.3.1.4 Describing Lists
+Variable-length lists in mathematics are often written using an ellipsis (...); 1, 2, ... is an example. BNF does not include the ellipsis, so an alternative method is required for describing lists of syntactic elements in programming languages. For BNF, the alternative is recursion. A rule is recursive if its LHS appears in its RHS. Recursion is used to describe lists in many of the example grammars in the remainder of this chapter.
+
+### 3.3.1.5 Grammars and Derivations
+A grammar is a generative device for defining languages. The sentences of the language are generated through a sequence of applications of the rules, beginning with a special nonterminal of the grammar called the start symbol. This sequence of rule applications is called a derivation. In a grammar for a complete programming language, the start symbol represents a complete program. Derivations that use leftmost order of replacement are called leftmost derivations. By choosing alternative RHSs of rules with which to replace nonterminals in the derivation, different sentences in the language can be generated. However, due to the infinite nature of most languages, it's impossible to generate all sentences in finite time.
+
+### 3.3.1.4 Describing Lists
+Variable-length lists in mathematics are often written using an ellipsis (. . .); 1, 2, . . . is an example. BNF does not include the ellipsis, so an alternative method is required for describing lists of syntactic elements in programming languages (for example, a list of identifiers appearing on a data declaration statement). For BNF, the alternative is recursion. A rule is recursive if its LHS appears in its RHS. The following rules illustrate how recursion is used to describe lists:
+
+- `<ident_list>` → `identifier`
+- `<ident_list>` → `identifier, <ident_list>`
+
+This defines `<ident_list>` as either a single token (identifier) or an identifier followed by a comma and another instance of `<ident_list>`. Recursion is used to describe lists in many of the example grammars in the remainder of this chapter.
+
+### 3.3.1.5 Grammars and Derivations
+A grammar is a generative device for defining languages. The sentences of the language are generated through a sequence of applications of the rules, beginning with a special nonterminal of the grammar called the start symbol. This sequence of rule applications is called a derivation. In a grammar for a complete programming language, the start symbol represents a complete program and is often named `<program>`. The simple grammar shown in Example 3.1 is used to illustrate derivations.
+
+A derivation of a program in this language follows:
+- `<program>` => `begin <stmt_list> end`
+- `=> begin <stmt> ; <stmt_list> end`
+- `=> begin <var> = <expression> ; <stmt_list> end`
+- `=> begin A = <expression> ; <stmt_list> end`
+- `=> begin A = <var> + <var> ; <stmt_list> end`
+- `=> begin A = B + <var> ; <stmt_list> end`
+- `=> begin A = B + C ; <stmt_list> end`
+- `=> begin A = B + ; <stmt> end`
+- `=> begin A = B + C ; <var> = <expression> end`
+- `=> begin A = B + C ; B = <expression> end`
+- `=> begin A = B + C ; B = <var> end`
+- `=> begin A = B + C ; B = C end`
+
+This derivation, like all derivations, begins with the start symbol, in this case `<program>`. Each successive string in the sequence is derived from the previous string by replacing one of the nonterminals with one of that nonterminal’s definitions. Each of the strings in the derivation, including `<program>`, is called a sentential form.
+
+### 3.3.1.7 Ambiguity
+
+- **Definition of Ambiguity:** A grammar is considered ambiguous if it can generate a sentential form (a sequence of symbols) that can be parsed into two or more distinct parse trees.
+
+- **Example of Ambiguity:** The text illustrates an example of ambiguity in this grammar. It presents a sentence, "A = B + C * A," and mentions that it can be parsed into two distinct parse trees. This ambiguity arises because the grammar allows growth of parse trees on both the left and the right sides.
+
+- **Implications of Ambiguity:** Ambiguity in language structures poses challenges for compilers, as they often base the semantics (meaning) of these structures on their syntactic form. Compilers determine the code to be generated for a statement by examining its parse tree. If a language structure has more than one parse tree, its meaning cannot be uniquely determined.
+
+- **Characteristics of Ambiguous Grammars:** The passage mentions other characteristics useful in determining whether a grammar is ambiguous. These include generating sentences with more than one leftmost derivation or more than one rightmost derivation.
+
+- **Handling Ambiguity:** While ambiguous grammars present challenges, some parsing algorithms can handle them. These parsers use additional information provided by the designer to construct the correct parse tree when encountering ambiguous constructs. In many cases, ambiguous grammars can be rewritten to be unambiguous while still generating the desired language.
+
+### 3.3.1.8 Operator Precedence
+
+In expressions involving multiple operators, such as x + y * z, the order of evaluation can affect the result. Assigning precedence levels to operators resolves this issue. For instance, if * has higher precedence than +, multiplication will be performed first regardless of the operators' order.
+
+- **Parsing Ambiguity and Precedence:** Parsing trees represent syntactic structures, and the position of operators in these trees determines their precedence. However, conflicting precedence information may arise, leading to ambiguity.
+  
+- **Unusual Precedence:** While a grammar may not be ambiguous, its operator precedence might not follow the standard order. In such cases, operators are positioned differently in the parse tree based on their roles in expressions.
+
+- **Resolving Precedence:** To ensure unambiguous parsing and consistent operator precedence, separate nonterminal symbols are used to represent operands with different precedence levels. This approach allows the grammar to enforce precedence rules by structuring the parse tree accordingly.
+
+- **Derivation and Parse Trees:** Each derivation in an unambiguous grammar corresponds to a unique parse tree. Different derivations may lead to the same parse tree, demonstrating the close relationship between parse trees and derivations.
+
+- **Notes**
+  - Every derivation with an unambiguous grammar has a unique parse tree, although that tree can be represented by different derivations  
+  - Grammar:
+    ````html
+    <assign> → <id> = <expr>
+    <id> → A | B | C
+    <expr> → <expr> + <term>
+    | <term>
+    <term> → <term> * <factor>
+    | <factor>
+    <factor> → ( <expr>)
+    | <id>
+    ````
+  - Left Side Derivation: (Start first step from the left)
+    ````html
+    <assign> => <id> = <expr>  
+    => A = <expr>  
+    => A = <expr> + <term>  
+    => A = <term> + <term>  
+    => A = <factor> + <term>  
+    => A = <id> + <term>  
+    => A = B + <term>  
+    => A = B + <term> * <factor>  
+    => A = B + <factor> * <factor>  
+    => A = B + <id> * <factor>  
+    => A = B + C * <factor>  
+    => A = B + C * <id>  
+    => A = B + C * A  
+    ````
+  - Right Side Derivation: (Start first step from the right)
+    ````html
+    <assign> => <id> = <expr>
+    => <id> = <expr> + <term>
+    => <id> = <expr> + <term> * <factor>
+    => <id> = <expr> + <term> * <id>
+    => <id> = <expr> + <term> * A
+    => <id> = <expr> + <factor> * A
+    => <id> = <expr> + <id> * A
+    => <id> = <expr> + C * A
+    => <id> = <term> + C * A
+    => <id> = <factor> + C * A
+    => <id> = <id> + C * A
+    => <id> = B + C * A
+    => A = B + C * A
+    ```` 
+
+### 3.3.1.9 Associativity of Operators
+
+When expressions contain operators with the same precedence (e.g., * and /), a semantic rule, known as associativity, determines their order of evaluation. For example, in the expression A / B * C, associativity specifies whether the division or multiplication operation takes precedence.
+
+- **Implicit Associativity:** Operator associativity can be implied by the structure of a grammar. 
+
+- **Significance of Associativity:** In most cases, associativity for addition is assumed to be left associative, consistent with mathematical principles. However, in computer arithmetic, particularly with floating-point numbers, associativity may affect accuracy and precision.
+
+- **Challenges with Left Recursion:** Left recursion in grammar rules implies left associativity. However, it poses limitations on certain syntax analysis algorithms. Consequently, grammars often need modifications to remove left recursion, compromising the explicit specification of left associativity.
+
+- **Right Associativity and Exponentiation:** The exponentiation operator is typically right associative in languages. To denote right associativity, right recursion can be employed in grammar rules. For instance, using rules like <factor> → <exp> ** <factor> describes exponentiation as right associative.
+
+- **Left vs Right Recursion Examples:**
+  For left recursive: Ex: \<LHS> = \<LHS> \<RHS>, while for right recursive: Ex: \<LHS> = \<RHS> \<LHS>
+
