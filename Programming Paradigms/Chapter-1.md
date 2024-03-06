@@ -48,6 +48,7 @@
     - [3.4.5 Examples of Attribute Grammars](#345-examples-of-attribute-grammars)
     - [3.4.6 Computing Attribute Values](#346-computing-attribute-values)
     - [3.4.7 Evaluation](#347-evaluation)
+  - [3.5  Dynamic Semantics](#35--dynamic-semantics)
 
 # Chapter 1: Preliminaries
 
@@ -517,3 +518,33 @@ Attribute values are computed through a process of decorating the parse tree. Ev
 ### 3.4.7 Evaluation
 
 Attribute grammars are essential for checking the static semantic rules of a language. Despite their power, large and complex attribute grammars pose challenges in writing, reading, and evaluating attribute values on large parse trees. However, they remain a commonly used tool in compiler design.
+
+## 3.5  Dynamic Semantics
+
+**Dynamic semantics** refers to the meaning of expressions, statements, and program units during program execution. Three common approaches to dynamic semantics are operational semantics, denotational semantics, and axiomatic semantics.
+
+**Operational Semantics:** This approach defines the meaning of a program by specifying how its execution proceeds step by step. It focuses on the operational behavior of programs, describing how program constructs are executed and how they interact with the computational environment.
+- When a programmer runs a test program to test the functionality of a construct, this is an example of an operational semantic as they determined the meaning of the construct based on the effect that it had on the machine.
+- At the lowest level this can be used to determine the meaning of a program based on the precise state changes that occur whenever the program is executed.
+- There are several problems associated with using this approach for complete formal semantics descriptions. For example, individual steps in execution and resulting state changes can be too numerous to derive any meaningful insights.
+- Machine language and real computers aren't used, instead intermediate languages and intepreters are used.
+- Operational semantics depends on programming languages of lower levels, not mathamatics like the other two.
+
+**Denotational Semantics:** Denotational semantics assigns mathematical objects, such as sets or functions, to program constructs, representing their meanings. This approach provides a mathematical model of program behavior, where the meaning of a program is represented by the mathematical properties of the objects assigned to its components. <mark>Parse trees with denotated objects, such as binary numbers or decimal numbers, are examples of denotational semantics in action.</mark>
+- Grammar for the set N. 
+    ````html
+    <dec_num> → '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7''8'|'9'
+    |<dec_num> ('0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9')
+    ````
+- Denotational semantics is defined in terms of only the values of all of the program’s variables. So,denotational semantics uses the state of the program to describe meaning
+  - This is different from Operational Semantics as <mark>Denotational Semantics uses the state of the program to describe meaning</mark> instead of the state of the machine
+- The key difference between operational semantics
+and denotational semantics is that state changes in operational semantics are
+defined by coded algorithms, written in some programming language, whereas
+in denotational semantics, state changes are defined by mathematical functions.
+
+**Axiomatic Semantics:** Axiomatic semantics specifies the meaning of programs by defining logical properties that hold before and after their execution. It focuses on reasoning about program behavior in terms of preconditions and postconditions. Weakest precondition is a concept used in axiomatic semantics to determine the minimal condition under which a given statement or sequence of statements will achieve a desired effect.
+
+**Weakest Preconditions (WP):**
+Single Statement: For a single statement, the weakest precondition is the condition that must hold true before executing the statement to ensure that the desired postcondition holds true after execution.
+Multiple Statements (Sequential Steps): For a sequence of statements executed sequentially, the weakest precondition is the condition that must hold true before executing the first statement to guarantee that the desired postcondition holds true after executing all the statements in sequence.
