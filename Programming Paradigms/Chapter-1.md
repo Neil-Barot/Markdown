@@ -48,7 +48,8 @@
     - [3.4.5 Examples of Attribute Grammars](#345-examples-of-attribute-grammars)
     - [3.4.6 Computing Attribute Values](#346-computing-attribute-values)
     - [3.4.7 Evaluation](#347-evaluation)
-  - [3.5  Dynamic Semantics](#35--dynamic-semantics)
+  - [3.5 Dynamic Semantics](#35-dynamic-semantics)
+      - [Review Weakest Precondition in Textbook (Pg170):](#review-weakest-precondition-in-textbook-pg170)
 
 # Chapter 1: Preliminaries
 
@@ -519,7 +520,7 @@ Attribute values are computed through a process of decorating the parse tree. Ev
 
 Attribute grammars are essential for checking the static semantic rules of a language. Despite their power, large and complex attribute grammars pose challenges in writing, reading, and evaluating attribute values on large parse trees. However, they remain a commonly used tool in compiler design.
 
-## 3.5  Dynamic Semantics
+## 3.5 Dynamic Semantics
 
 **Dynamic semantics** refers to the meaning of expressions, statements, and program units during program execution. Three common approaches to dynamic semantics are operational semantics, denotational semantics, and axiomatic semantics.
 
@@ -542,9 +543,26 @@ Attribute grammars are essential for checking the static semantic rules of a lan
 and denotational semantics is that state changes in operational semantics are
 defined by coded algorithms, written in some programming language, whereas
 in denotational semantics, state changes are defined by mathematical functions.
+- Based on <mark>Recursive Function Theory</mark>
 
 **Axiomatic Semantics:** Axiomatic semantics specifies the meaning of programs by defining logical properties that hold before and after their execution. It focuses on reasoning about program behavior in terms of preconditions and postconditions. Weakest precondition is a concept used in axiomatic semantics to determine the minimal condition under which a given statement or sequence of statements will achieve a desired effect.
+- Most abstract approach to semantics specification compared to other two. It specifies what can be proven about the program. (Prove the correctness of programs?)
+- There is no model of the state of machine or program, or model of state changes like the other two. Instead <mark>the meaning of the program is based on relationships among program variables and constants.</mark>
+- Formal approach to specifying the meaning of mrograms by defining logical properties that hold before and after their execution.
+-  A fundamental concept in axiomatic semantics is the Hoare triple, which is denoted as {P} S {Q}, where:  <br><br>
+    ````
+    P is the precondition,
+    S is the program statement or command being executed, and
+    Q is the postcondition.
+    ````
+    The Hoare triple asserts that if the precondition P holds true before executing the statement S, then the postcondition Q will hold true after executing S.
 
+#### <mark>Review Weakest Precondition in Textbook (Pg170):</mark>
 **Weakest Preconditions (WP):**
 Single Statement: For a single statement, the weakest precondition is the condition that must hold true before executing the statement to ensure that the desired postcondition holds true after execution.
 Multiple Statements (Sequential Steps): For a sequence of statements executed sequentially, the weakest precondition is the condition that must hold true before executing the first statement to guarantee that the desired postcondition holds true after executing all the statements in sequence.
+- It is the least restrictive precondition that will guarentee the validity of the associated post condidtion. Ex:
+  ````html
+    sum = 2 * x + 1 {sum > 1}
+    The weakest precondidtion would be {x > 0}
+  ````
